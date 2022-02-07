@@ -14,11 +14,26 @@ import javax.swing.JButton;
  * @author Elton
  */
 public class Button extends JButton {
+    public boolean initial;
+    public boolean showing;
+    public static int held = 0;
     
-    
-    public Button() {
-        this.setPreferredSize(new Dimension(100,100));
+    public Button(int val, boolean dis) {
+        this.setPreferredSize(new Dimension(75,75));
         this.setBackground(Color.white);
+        if (dis) {
+            this.setText(String.valueOf(val));
+        }
+        this.initial = dis;
         
+        
+    }
+    public void setDis (int current) {
+        if (!initial) {
+        this.setText(String.valueOf(current));
+        Button.held = current;
+        this.showing = true;
+        }
+        this.showing = false;
     }
 }

@@ -5,45 +5,33 @@
  */
 package sudoku;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 /**
  *
  * @author Elton
  */
-public class ClickHandler implements MouseListener {
+public class ClickHandler implements ActionListener {
     
-    private Sudoku game;
+    private final Sudoku game;
     
     public ClickHandler(Sudoku game) {
         this.game = game;
     }
 
     @Override
-    public void mouseClicked(MouseEvent me) {
-        Button b = (Button)me.getSource();
-        
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() instanceof Button) {
+            Button b = (Button)ae.getSource();
+            int in = game.getCurrent();
+            b.setDis(in);
+        }else { 
+            NumPad num = (NumPad)ae.getSource();
+            int i = num.getNumber();
+            game.setCurrent(i);
+            System.out.println(game.getCurrent());
+        }
     }
-
-    @Override
-    public void mousePressed(MouseEvent me) {
-        
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {
-        
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-        
-    }
-    
 }
